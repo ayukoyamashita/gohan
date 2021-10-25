@@ -7,7 +7,11 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import Question from './Question'
 
+let q = new Question();
+console.log(Question.data);
+console.log(q.createCombination());
 export default {
   name: 'App',
   components: {
