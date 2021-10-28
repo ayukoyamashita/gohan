@@ -26,31 +26,12 @@ class Question {
 		},
 		{
 			id: 4,
-			label: "気分は？",
+			label: "元気は？",
 			options: [
 				{ id: 7, label: "もりもり" },
 				{ id: 8, label: "しなしな" },
 			],
 		},
-	];
-
-	static score = [
-		// あたたかい
-		{ oily: 0, heat: 2, salty: 0, sweetness: 0, solid: 0 },
-		// つめたい
-		{ oily: 0, heat: -2, salty: 0, sweetness: 0, solid: 0 },
-		// こってり
-		{ oily: 2, heat: 0, salty: 0, sweetness: 0, solid: 1 },
-		// さっぱり
-		{ oily: -2, heat: 0, salty: 0, sweetness: 0, solid: -1 },
-		// ガッツをください
-		{ oily: 2, heat: 1, salty: 3, sweetness: -1, solid: 2 },
-		// 優しさをください
-		{ oily: -2, heat: -1, salty: -1, sweetness: 3, solid: -2 },
-		// もりもり
-		{ oily: 2, heat: 1, salty: 2, sweetness: 2, solid: 2 },
-		// しなしな
-		{ oily: -2, heat: -1, salty: -2, sweetness: -1, solid: -2 },
 	];
 
 	constructor() {}
