@@ -1,16 +1,19 @@
 {
   "name": "gohan",
+  "homepage": "https://ayukoyamashita.github.io/gohan",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "deploy": "yarn build && gh-pages -d dist",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.23.0",
     "chart.js": "2.9.4",
     "core-js": "^3.6.5",
+    "gh-pages": "^3.2.3",
     "reset-css": "^5.0.1",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.1"
