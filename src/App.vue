@@ -1,8 +1,8 @@
 <template>
 	<div id="app">
 		<h1>おすすめごはん</h1>
-		<p v-if="status === 'loading'">loading</p>
-		<div v-if="status !== 'loading'">
+		<p v-if="status === STATUS.loading">loading</p>
+		<div v-if="status !== STATUS.loading">
 			<div v-for="(question, i) in questions" :key="question.id">
 				<p>{{ question.label }}</p>
 				<label v-for="option in question.options" :key="option.id">
@@ -17,7 +17,7 @@
 
 			<button @click="osusumeGohan">おすすめ計算</button>
 		</div>
-		<div v-if="status === 'result'">
+		<div v-if="status === STATUS.result">
 			<radarchart
 				:score="[
 					myScore.oily,
@@ -38,11 +38,13 @@
 </template>
 
 <script>
-import Question from "./Question";
-import Gohan from "./Gohan";
+import "reset-css";
+import Question from "./js/Question";
+import Gohan from "./js/Gohan";
 import axios from "axios";
 import Radarchart from "./components/Radarchart";
 
+const STATUS = { loading: 1, start: 2, result: 3 };
 let gohan;
 
 export default {
@@ -52,13 +54,18 @@ export default {
 	},
 	data() {
 		return {
-			status: "loading",
+			status: STATUS.loading,
 			questions: Question.data,
 			menuList: [],
-			myScore: { oily: 0, heat: 0, salty: 0, sweetness: 0, solid: 0 },
+			myScore: {},
 			osusumeList: [],
 			answers: [],
 		};
+	},
+	computed: {
+		STATUS() {
+			return STATUS;
+		},
 	},
 	mounted() {
 		gohan = new Gohan();
@@ -73,7 +80,7 @@ export default {
 				.then((response) => {
 					// handle success
 					this.menuList = response.data;
-					this.status = "start";
+					this.status = STATUS.start;
 					gohan.setMenuList(this.menuList);
 				})
 				.catch(function(error) {
@@ -88,7 +95,7 @@ export default {
 			gohan.setAnswer(this.answers);
 			this.myScore = gohan.answerScore();
 			this.osusumeList = gohan.osusume();
-			this.status = "result";
+			this.status = STATUS.result;
 		},
 	},
 };

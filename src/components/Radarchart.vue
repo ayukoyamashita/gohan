@@ -4,7 +4,7 @@
 	</div>
 </template>
 <script>
-import RadarChart from "./Radar";
+import RadarChart from "../js/Radar";
 
 export default {
 	components: {
@@ -21,7 +21,7 @@ export default {
 					ticks: {
 						min: 0,
 						max: 10,
-						stepSize: 1,
+						stepSize: 2,
 					},
 				},
 			},
