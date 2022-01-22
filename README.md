@@ -1,5 +1,7 @@
 # gohan
 
+おすすめごはん
+
 ## Project setup
 ```
 yarn install
