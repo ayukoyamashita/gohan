@@ -1,6 +1,6 @@
 # gohan
 
-おすすめごはん
+おすすめごはんだよ
 
 ## Project setup
 ```
