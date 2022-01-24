@@ -28,8 +28,6 @@ class Gohan {
 		this.answer = answer;
 	}
 
-	scoringMenu() {}
-
 	answerScore() {
 		let myScore = { oily: 5, heat: 5, salty: 5, sweetness: 5, solid: 5 };
 		for (let i = 0; i < this.answer.length; i++) {

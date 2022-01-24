@@ -45,6 +45,7 @@ export default {
 
 <style scoped>
 .radar {
-	width: 400px;
+	width: 250px;
+	margin: auto;
 }
 </style>

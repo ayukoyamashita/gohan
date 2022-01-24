@@ -1,9 +1,11 @@
 <template>
 	<div id="app">
-		<h1>おすすめごはん</h1>
+		<h1 class="title">おすすめごはん</h1>
+
 		<p v-if="status === STATUS.loading">loading</p>
-		<div v-if="status !== STATUS.loading">
-			<div v-for="(question, i) in questions" :key="question.id">
+
+		<ul class="questionList" v-if="status !== STATUS.loading">
+			<li v-for="(question, i) in questions" :key="question.id">
 				<p>{{ question.label }}</p>
 				<label v-for="option in question.options" :key="option.id">
 					<input
@@ -13,11 +15,15 @@
 						v-model="answers[i]"
 					/>{{ option.label }}</label
 				>
-			</div>
+			</li>
 
-			<button @click="osusumeGohan">おすすめ計算</button>
-		</div>
-		<div v-if="status === STATUS.result">
+			<button class="btn mt-30" @click="osusumeGohan">
+				おすすめ計算
+			</button>
+		</ul>
+
+		<div class="mt-60" v-if="status === STATUS.result">
+			<h2 class="secTitle">あなたのスコア</h2>
 			<radarchart
 				:score="[
 					myScore.oily,
@@ -28,21 +34,47 @@
 				]"
 			/>
 
-			<ul>
-				<li v-for="osusume in osusumeList" :key="osusume.id">
-					{{ osusume.name }}
+			<h2 class="secTitle">あなたへのおすすめごはん</h2>
+			<ol class="osusumeList">
+				<li v-for="(osusume, index) in osusumeList" :key="osusume.id">
+					<div class="osusumeCard">
+						<div class="osusumeCard_image">
+							<p class="osusumeCard_image_rank">
+								{{ index + 1 }}位
+							</p>
+							<img
+								:src="osusume.image"
+								width="200"
+								height="200"
+							/>
+							<p class="osusumeCard_image_name">
+								{{ osusume.name }}
+							</p>
+						</div>
+						<div class="osusumeCard_radar">
+							<radarchart
+								:score="[
+									osusume.oily,
+									osusume.heat,
+									osusume.salty,
+									osusume.sweetness,
+									osusume.solid,
+								]"
+							/>
+						</div>
+					</div>
 				</li>
-			</ul>
+			</ol>
 		</div>
 	</div>
 </template>
 
 <script>
 import "reset-css";
-import Question from "./js/Question";
-import Gohan from "./js/Gohan";
+import Question from "@/js/Question";
+import Gohan from "@/js/Gohan";
 import axios from "axios";
-import Radarchart from "./components/Radarchart";
+import Radarchart from "@/components/Radarchart";
 
 const STATUS = { loading: 1, start: 2, result: 3 };
 let gohan;
